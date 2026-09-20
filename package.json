@@ -1,0 +1,23 @@
+{
+  "name": "todo-api",
+  "version": "1.0.0",
+  "description": "TODO 관리 API 서버",
+  "main": "api-server.js",
+  "scripts": {
+    "start": "node server.js",
+    "start:api": "node todo.js",
+    "test": "node api-server.js & sleep 2 && node test.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "@anthropic-ai/sdk": "^0.125.0",
+    "@prisma/cli": "^8.0.0-rc.15",
+    "@prisma/client": "^5.18.0",
+    "prisma": "^5.18.0"
+  }
+}

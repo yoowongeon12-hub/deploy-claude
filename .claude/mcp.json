@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "prisma": {
+      "command": "npx",
+      "args": [
+        "prisma-mcp"
+      ],
+      "env": {
+        "DATABASE_URL": "mysql://root@localhost:3306/claude"
+      }
+    }
+  }
+}

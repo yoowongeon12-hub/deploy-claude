@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "Bash(npm list *)",
+      "Bash(npm init *)",
+      "PowerShell(pip install playwright)",
+      "PowerShell(ls c:\\\\claude_1900_ksh\\\\workspace\\\\day06\\\\melon.html; \\(Get-Content c:\\\\claude_1900_ksh\\\\workspace\\\\day06\\\\melon.html | Measure-Object -Line\\).Lines)"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "context7",
+    "sequential-thinking",
+    "firecrawl"
+  ]
+}

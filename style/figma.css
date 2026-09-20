@@ -1,0 +1,431 @@
+/* 메인 프레임 컨테이너 - 검은색 배경과 라운드 처리 */
+.frame-1 {
+    background-color: #1a1a1a;
+    overflow: clip;
+    border-radius: 25px;
+    position: relative;
+    width: 2400px;
+    height: 1532px;
+}
+
+/* 배경 벡터 요소 - 우측 상단 배치 */
+.vector-bg {
+    position: absolute;
+    right: -3.95%;
+    top: 76.58%;
+    width: 100%;
+    height: 100%;
+}
+
+.vector-bg img {
+    display: block;
+    max-width: none;
+    width: 100%;
+    height: 100%;
+}
+
+/* Brutalist 32 디자인 요소 - 우측 하단 */
+.brutalist-32 {
+    position: absolute;
+    left: 635px;
+    top: 520px;
+    width: 360.75px;
+    height: 360.75px;
+}
+
+/* Brutalist 97 디자인 요소 - 우측 상단 */
+.brutalist-97 {
+    position: absolute;
+    right: -0.01%;
+    top: 0;
+    width: 345.2px;
+    height: 346.6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brutalist-97 img {
+    display: block;
+    max-width: none;
+    width: 100%;
+    height: 100%;
+}
+
+/* Brutalist 51 디자인 요소 - 하단 중앙 */
+.brutalist-51 {
+    position: absolute;
+    left: 679px;
+    top: 998px;
+    width: 363.2px;
+    height: 363.2px;
+}
+
+.brutalist-51 img {
+    display: block;
+    max-w-none;
+    width: 100%;
+    height: 100%;
+}
+
+/* 메인 텍스트 - careerplace (노란색 대문자) */
+.text-careerplace {
+    position: absolute;
+    left: 50%;
+    top: 699.5px;
+    transform: translateX(-565px);
+    font-family: 'Oddval', 'SemiBold', sans-serif;
+    font-size: 96px;
+    font-weight: 600;
+    color: #d2ff1f;
+    text-align: center;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.text-careerplace p {
+    margin: 0;
+    line-height: 23px;
+}
+
+/* 텍스트 - Mobile app (좌측 상단) */
+.text-mobile-app {
+    position: absolute;
+    left: 320px;
+    top: 102.5px;
+    font-family: 'Oddval', 'SemiBold', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.text-mobile-app p {
+    margin: 0;
+    line-height: 33px;
+}
+
+/* 텍스트 - mobile education app (좌측 중단) */
+.text-mobile-education {
+    position: absolute;
+    left: 50%;
+    top: 808px;
+    transform: translateX(-880px) translateY(-50%);
+    font-family: 'Oddval', 'SemiBold', sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.text-mobile-education p {
+    margin: 0;
+    line-height: 33px;
+}
+
+/* 텍스트 - 2024 (좌측 하단) */
+.text-year {
+    position: absolute;
+    left: 320px;
+    top: 1272.5px;
+    transform: translateY(-50%);
+    font-family: 'Oddval', 'SemiBold', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.text-year p {
+    margin: 0;
+    line-height: 33px;
+}
+
+/* 앱 아이콘 기본 스타일 */
+.app-icon {
+    position: absolute;
+    width: 118px;
+    height: 118px;
+    border-radius: 26px;
+    overflow: clip;
+    top: 520px;
+}
+
+/* 앱 아이콘 - 검은색 테두리 */
+.app-icon-black {
+    left: 320px;
+    border: 2px solid #000000;
+}
+
+/* 앱 아이콘 - 흰색 테두리 */
+.app-icon-white {
+    left: 449px;
+    border: 0.5px solid rgba(0, 0, 0, 0.06);
+}
+
+/* 앱 아이콘 내부 구조 */
+.app-icon-inner {
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    width: 100%;
+    height: 100%;
+}
+
+.app-icon-white .app-icon-inner {
+    left: -0.5px;
+    top: -0.5px;
+}
+
+/* 앱 아이콘 마스크 */
+.app-icon-mask {
+    position: absolute;
+    inset: 0;
+    width: 118px;
+    height: 118px;
+}
+
+.app-icon-mask img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    max-width: none;
+    width: 100%;
+    height: 100%;
+}
+
+/* 앱 아이콘 콘텐츠 */
+.app-icon-content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+}
+
+/* 아이콘 원형 요소 */
+.icon-circle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) translateY(-31.32px);
+    width: 16.051px;
+    height: 16.051px;
+}
+
+.icon-circle img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    max-width: none;
+    width: 100%;
+    height: 100%;
+}
+
+/* 벡터 아이콘 43 */
+.icon-vector-43 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) translateX(-21.28px) translateY(-3.89px);
+    width: 33.439px;
+    height: 18.726px;
+}
+
+.icon-vector-43 img {
+    display: block;
+    max-width: none;
+    width: 100%;
+    height: 100%;
+}
+
+/* 벡터 아이콘 45 */
+.icon-vector-45 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) translateX(-16.15px) translateY(18.04px) rotate(150deg);
+    width: 33.375px;
+    height: 30.329px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-vector-45 img {
+    display: block;
+    max-width: none;
+    width: 27.478px;
+    height: 19.156px;
+}
+
+/* 벡터 아이콘 46 */
+.icon-vector-46 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) translateX(18.2px) translateY(18.46px) rotate(60deg);
+    width: 30.816px;
+    height: 35.893px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-vector-46 img {
+    display: block;
+    max-width: none;
+    width: 31.352px;
+    height: 17.481px;
+}
+
+/* 벡터 아이콘 44 */
+.icon-vector-44 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) translateX(22.61px) translateY(-12.68px) rotate(-150deg);
+    width: 32.102px;
+    height: 27.884px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-vector-44 img {
+    display: block;
+    max-width: none;
+    width: 27.718px;
+    height: 16.195px;
+}
+
+/* 아이폰 요소 */
+.icon-iphone {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) translateX(22.91px) translateY(-29.48px);
+    width: 100%;
+    height: 100%;
+}
+
+/* 아이폰 테두리 */
+.icon-iphone-border {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 7.818px;
+    height: 13.031px;
+    border: 1.5px solid #000000;
+    border-radius: 1px;
+}
+
+.icon-iphone-border-white {
+    border-color: #ffffff;
+}
+
+/* 아이폰 내부 요소 */
+.icon-iphone-inner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) translateY(-33.81px);
+    width: 2.606px;
+    height: 0;
+}
+
+.icon-iphone-inner img {
+    display: block;
+    max-width: none;
+    width: 100%;
+    height: 100%;
+}
+
+/* 모바일 목업 이미지들 */
+.mockup-iphone-1 {
+    position: absolute;
+    left: 1599px;
+    top: 556px;
+    width: 492px;
+    height: 1000px;
+    pointer-events: none;
+}
+
+.mockup-iphone-1 img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    max-width: none;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+/* 목업 이미지 1 */
+.mockup-image-1 {
+    position: absolute;
+    left: 996px;
+    top: 723px;
+    width: 492px;
+    height: 1000px;
+    pointer-events: none;
+}
+
+.mockup-image-1 img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    max-width: none;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+/* 목업 이미지 2 */
+.mockup-image-2 {
+    position: absolute;
+    left: 1599px;
+    top: -500px;
+    width: 492px;
+    height: 1000px;
+    pointer-events: none;
+}
+
+.mockup-image-2 img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    max-width: none;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+/* 목업 이미지 3 */
+.mockup-image-3 {
+    position: absolute;
+    left: 1042px;
+    top: -334px;
+    width: 492px;
+    height: 1000px;
+    pointer-events: none;
+}
+
+.mockup-image-3 img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    max-width: none;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}

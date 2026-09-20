@@ -1,0 +1,354 @@
+/* ============================================================
+ * 게시글 작성/수정 페이지 스타일 (Saasto SaaS 디자인 시스템)
+ * board-write.html과 board-edit.html의 스타일링
+ * ============================================================
+ */
+
+/* 전역 CSS 변수 - Saasto 스타일 팔레트 */
+:root {
+    /* Color Palette */
+    --primary-color: #4F46E5;
+    --primary-hover: #4338CA;
+    --bg-primary: #F8FAFC;
+    --bg-secondary: #F1F5F9;
+    --surface-color: #FFFFFF;
+    --text-primary: #0F172A;
+    --text-secondary: #64748B;
+    --text-tertiary: #94A3B8;
+    --border-color: #E2E8F0;
+    --error-color: #EF4444;
+    --success-color: #10B981;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+    /* Font */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* 기본 스타일 리셋 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* 전체 컨테이너 */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* ============================================================
+ * 헤더 영역 스타일
+ * ============================================================ */
+
+.header {
+    margin-bottom: 40px;
+}
+
+.header-back {
+    margin-bottom: 16px;
+}
+
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    background-color: var(--surface-color);
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background-color: var(--bg-primary);
+    transform: translateX(-2px);
+}
+
+.btn-back svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2;
+}
+
+.header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.header-description {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* ============================================================
+ * 폼 영역 스타일
+ * ============================================================ */
+
+.form-container {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: var(--shadow-sm);
+}
+
+/* 폼 그룹 */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+.form-group:last-of-type {
+    margin-bottom: 32px;
+}
+
+/* 폼 레이블 */
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.required {
+    color: var(--error-color);
+}
+
+/* 입력 필드 래퍼 */
+.input-wrapper,
+.textarea-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* 기본 입력 필드 스타일 */
+.form-input {
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text-primary);
+    background-color: var(--surface-color);
+    transition: all 0.2s ease;
+    line-height: 1.5;
+}
+
+.form-input::placeholder {
+    color: var(--text-tertiary);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    background-color: var(--surface-color);
+}
+
+/* 텍스트 에어리어 */
+.form-textarea {
+    resize: vertical;
+    min-height: 350px;
+    padding: 14px;
+}
+
+/* 문자 카운트 */
+.input-char-count,
+.textarea-char-count {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    text-align: right;
+}
+
+/* ============================================================
+ * 폼 액션 버튼 영역
+ * ============================================================ */
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    padding-top: 28px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* 버튼 기본 스타일 */
+.btn {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+/* 주요 버튼 (저장) */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-primary:disabled {
+    background-color: var(--text-tertiary);
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 보조 버튼 (취소) */
+.btn-secondary {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--bg-primary);
+    border-color: var(--text-secondary);
+    transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+/* ============================================================
+ * 에러 메시지
+ * ============================================================ */
+
+.error-message {
+    padding: 12px 14px;
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid var(--error-color);
+    border-radius: 8px;
+    color: var(--error-color);
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+/* ============================================================
+ * 반응형 디자인
+ * ============================================================ */
+
+@media (max-width: 768px) {
+    .container {
+        padding: 24px 16px;
+    }
+
+    .form-container {
+        padding: 28px 20px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 16px 12px;
+    }
+
+    .form-container {
+        padding: 20px 16px;
+        border-radius: 8px;
+    }
+
+    .header h1 {
+        font-size: 20px;
+    }
+
+    .form-input {
+        font-size: 16px;
+    }
+
+    .form-textarea {
+        min-height: 250px;
+    }
+
+    .form-group {
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    .form-actions {
+        gap: 8px;
+    }
+
+    .btn {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+
+    .btn-back {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+}
+
+/* ============================================================
+ * 추가 유틸리티 스타일
+ * ============================================================ */
+
+/* 읽기 전용 입력 필드 */
+.form-input-readonly {
+    background-color: var(--bg-secondary);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* 입력 힌트 */
+.input-hint {
+    display: block;
+    font-size: 12px;
+    color: var(--text-tertiary);
+    margin-top: 4px;
+}

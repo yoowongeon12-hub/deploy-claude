@@ -1,0 +1,118 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"  
+  url      = env("DATABASE_URL")
+}
+
+// 회원 정보
+model Member {
+  @@map("tbl_member")
+
+  id Int @id @default(autoincrement())
+  memberEmail String @unique
+  memberPassword String
+  memberName String
+  memberAge Int
+  memberCreateAt DateTime @default(now())
+
+  // 할일 목록 (회원 1 : 할일 N)
+  todos Todo[]
+}
+
+// 할일 항목
+model Todo {
+  @@map("tbl_todo")
+  // 인덱스: 회원 + 등록순으로 조회하는 것이 기본 패턴이므로 인덱스 설정
+  @@index([memberId, createdAt(sort: Desc)])
+
+  // 고유 식별자 (자동 증가 정수)
+  id Int @id @default(autoincrement())
+
+  // 회원 외래키 (필수)
+  memberId Int
+  member Member @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+  // 할일 내용 (1자 이상 200자 이하)
+  content String @db.VarChar(200)
+
+  // 완료 여부 (기본값: false)
+  completed Boolean @default(false)
+
+  // 작성 시간 (기본값: 현재 시각)
+  createdAt DateTime @default(now())
+
+  // 완료 시간 (nullable: 완료되지 않았을 때는 null)
+  completedAt DateTime?
+
+  // 수정 시간 (기본값: 현재 시각, 변경 시마다 갱신)
+  updatedAt DateTime @updatedAt
+
+  // 소프트 삭제 플래그 (기본값: false)
+  isDeleted Boolean @default(false)
+}
+
+// 게시글 항목 (비회원 게시판)
+model Post {
+  @@map("tbl_post")
+  // 인덱스: 생성 시간순으로 조회하는 것이 기본 패턴이므로 인덱스 설정
+  @@index([created_at(sort: Desc)])
+
+  // 고유 식별자 (자동 증가 정수)
+  id Int @id @default(autoincrement())
+
+  // 게시글 제목 (필수, 최대 200자)
+  title String @db.VarChar(200)
+
+  // 게시글 내용 (필수, 최대 10000자)
+  content String @db.LongText
+
+  // 작성자 이름 (필수, 비회원 게시판이므로 회원정보 없음)
+  author_name String @db.VarChar(100)
+
+  // 조회수 (기본값: 0, 게시글 상세보기 시 1씩 증가)
+  view_count Int @default(0)
+
+  // 작성 시간 (기본값: 현재 시각)
+  created_at DateTime @default(now())
+
+  // 수정 시간 (기본값: 현재 시각, 변경 시마다 갱신)
+  updated_at DateTime @updatedAt
+
+  // 댓글 목록 (게시글 1 : 댓글 N)
+  comments Comment[]
+}
+
+// 댓글 항목
+model Comment {
+  @@map("tbl_comment")
+  // 인덱스: 게시글별 댓글 조회 시 생성 시간순으로 조회
+  @@index([post_id, created_at(sort: Asc)])
+
+  // 고유 식별자 (자동 증가 정수)
+  id Int @id @default(autoincrement())
+
+  // 게시글 외래키 (필수)
+  post_id Int
+  post Post @relation(fields: [post_id], references: [id], onDelete: Cascade)
+
+  // 댓글 내용 (필수, 최대 2000자)
+  content String @db.VarChar(2000)
+
+  // 작성자 이름 (필수, 비회원 게시판이므로 회원정보 없음)
+  author_name String @db.VarChar(100)
+
+  // 작성 시간 (기본값: 현재 시각)
+  created_at DateTime @default(now())
+
+  // 수정 시간 (기본값: 현재 시각, 변경 시마다 갱신)
+  updated_at DateTime @updatedAt
+}

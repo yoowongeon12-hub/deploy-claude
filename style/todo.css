@@ -1,0 +1,522 @@
+/* ================================================================
+   TODO 관리 애플리케이션 스타일시트
+
+   전체 레이아웃은 flex를 기반으로 구성되며,
+   모바일 대응(≥320px)을 지원합니다.
+   들여쓰기: 4칸, 클래스명: kebab-case
+   ================================================================ */
+
+/* ================================================================
+   기본 스타일 및 리셋
+   ================================================================ */
+
+/* 전체 문서의 기본 스타일 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* body 기본 스타일: 배경색, 폰트, 줄 높이 설정 */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f5f7fa;
+    color: #333333;
+    line-height: 1.6;
+}
+
+/* ================================================================
+   컨테이너 및 주요 레이아웃
+   ================================================================ */
+
+/* 전체 컨테이너: 최대 너비 설정 및 중앙 정렬 */
+.todo-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 및 요약 영역: flex로 제목과 요약을 양 끝에 배치 */
+.todo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #e8ecf1;
+}
+
+/* 제목 스타일: 헤딩 크기 및 색상 설정 */
+.todo-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+/* 진행 요약 텍스트: 부가 정보 스타일 */
+.todo-summary {
+    font-size: 14px;
+    color: #666666;
+    font-weight: 500;
+}
+
+/* ================================================================
+   입력 영역 스타일
+   ================================================================ */
+
+/* 입력 섹션: flex로 입력창과 버튼을 배치 */
+.todo-input-section {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+}
+
+/* 입력 필드 기본 스타일 */
+.todo-input {
+    flex: 1;
+    min-height: 44px;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 1px solid #d0d7e0;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #333333;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* 입력 필드 포커스 상태: 테두리 색상 및 그림자 강조 */
+.todo-input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+/* 입력 필드 placeholder 색상 */
+.todo-input::placeholder {
+    color: #999999;
+}
+
+/* 문자 수 표시기: 입력 개수 정보 제공 */
+.input-counter {
+    padding: 12px 8px;
+    font-size: 12px;
+    color: #999999;
+    white-space: nowrap;
+    align-self: center;
+    min-width: 35px;
+}
+
+/* 추가 버튼 기본 스타일 */
+.todo-add-btn {
+    min-width: 80px;
+    height: 44px;
+    padding: 0 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #4a90e2;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+/* 추가 버튼 hover 상태: 배경색 변화로 상호작용 피드백 */
+.todo-add-btn:hover {
+    background-color: #3a7dd5;
+}
+
+/* 추가 버튼 active 상태: 클릭 피드백 */
+.todo-add-btn:active {
+    transform: translateY(1px);
+}
+
+/* 추가 버튼 focus 상태: 키보드 네비게이션 시 시각적 피드백 */
+.todo-add-btn:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
+}
+
+/* ================================================================
+   필터 영역 스타일
+   ================================================================ */
+
+/* 필터 섹션: flex로 필터 버튼들을 배치 */
+.todo-filter-section {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e8ecf1;
+}
+
+/* 필터 버튼 기본 스타일 */
+.filter-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666666;
+    background-color: transparent;
+    border: 1px solid #d0d7e0;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+/* 필터 버튼 hover 상태: 배경색 변화 */
+.filter-btn:hover {
+    border-color: #4a90e2;
+    color: #4a90e2;
+}
+
+/* 필터 버튼 활성 상태: 선택된 필터 강조 */
+.filter-btn-active {
+    color: #ffffff;
+    background-color: #4a90e2;
+    border-color: #4a90e2;
+}
+
+/* 필터 버튼 focus 상태: 키보드 네비게이션 */
+.filter-btn:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
+}
+
+/* ================================================================
+   목록 영역 스타일
+   ================================================================ */
+
+/* 목록 섹션 컨테이너 */
+.todo-list-section {
+    min-height: 200px;
+}
+
+/* 목록 기본 스타일: 리스트 마커 제거 */
+.todo-list {
+    list-style: none;
+}
+
+/* 할일 항목 기본 스타일: flex로 내용과 버튼을 배치 */
+.todo-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    background-color: #ffffff;
+    border: 1px solid #e8ecf1;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+/* 할일 항목 완료 상태: 배경색 변경 및 텍스트 스타일 조정 */
+.todo-item-completed {
+    background-color: #f5f7fa;
+    border-color: #d9dde4;
+}
+
+/* 할일 항목 hover 상태: 시각적 강조 */
+.todo-item:hover {
+    border-color: #c0c7d0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* 체크박스 기본 스타일 */
+.todo-checkbox {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    accent-color: #4a90e2;
+}
+
+/* 체크박스 focus 상태: 키보드 네비게이션 피드백 */
+.todo-checkbox:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
+}
+
+/* 내용 영역: flex로 텍스트를 확장하여 버튼과 분리 */
+.todo-content-area {
+    flex: 1;
+    min-width: 0;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+/* 할일 내용 텍스트 기본 스타일 */
+.todo-content {
+    display: block;
+    font-size: 16px;
+    color: #333333;
+    line-height: 1.5;
+}
+
+/* 완료 항목의 내용: 취소선 및 낮은 명도 적용 */
+.todo-item-completed .todo-content {
+    text-decoration: line-through;
+    color: #999999;
+}
+
+/* 액션 버튼 영역: flex로 수정/삭제 버튼을 배치 */
+.todo-action-area {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+/* 액션 버튼 기본 스타일 */
+.todo-action-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid #d0d7e0;
+    border-radius: 4px;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+/* 수정 버튼 스타일 */
+.todo-edit-btn {
+    color: #4a90e2;
+    border-color: #4a90e2;
+}
+
+/* 수정 버튼 hover 상태 */
+.todo-edit-btn:hover {
+    background-color: #e8f1ff;
+}
+
+/* 수정 버튼 focus 상태 */
+.todo-edit-btn:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
+}
+
+/* 삭제 버튼 스타일 */
+.todo-delete-btn {
+    color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+/* 삭제 버튼 hover 상태 */
+.todo-delete-btn:hover {
+    background-color: #ffe8e8;
+}
+
+/* 삭제 버튼 focus 상태 */
+.todo-delete-btn:focus {
+    outline: 2px solid #e74c3c;
+    outline-offset: 2px;
+}
+
+/* ================================================================
+   편집 모드 스타일
+   ================================================================ */
+
+/* 편집 컨테이너: flex로 입력창과 버튼을 배치 */
+.edit-container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+}
+
+/* 편집 입력 필드 스타일 */
+.edit-input {
+    flex: 1;
+    min-height: 36px;
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 2px solid #4a90e2;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #333333;
+}
+
+/* 편집 입력 필드 focus 상태 */
+.edit-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+/* 편집 버튼 영역: flex로 확정/취소 버튼을 배치 */
+.edit-buttons {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+/* 편집 확정 버튼 스타일 */
+.edit-confirm-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: #27ae60;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* 편집 확정 버튼 hover 상태 */
+.edit-confirm-btn:hover {
+    background-color: #229954;
+}
+
+/* 편집 확정 버튼 focus 상태 */
+.edit-confirm-btn:focus {
+    outline: 2px solid #27ae60;
+    outline-offset: 2px;
+}
+
+/* 편집 취소 버튼 스타일 */
+.edit-cancel-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #666666;
+    background-color: #ecf0f1;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* 편집 취소 버튼 hover 상태 */
+.edit-cancel-btn:hover {
+    background-color: #d5dbdb;
+}
+
+/* 편집 취소 버튼 focus 상태 */
+.edit-cancel-btn:focus {
+    outline: 2px solid #666666;
+    outline-offset: 2px;
+}
+
+/* ================================================================
+   빈 상태 메시지
+   ================================================================ */
+
+/* 빈 상태 메시지 기본 스타일: 중앙 정렬 및 안내 텍스트 */
+.empty-message {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+    color: #999999;
+}
+
+/* 빈 상태 메시지의 주 텍스트 */
+.empty-message p {
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+/* 빈 상태 메시지의 보조 텍스트 */
+.empty-submessage {
+    font-size: 14px;
+    color: #b8bcc6;
+}
+
+/* ================================================================
+   모바일 대응 스타일 (320px 이상)
+   ================================================================ */
+
+/* 모바일 화면에서의 레이아웃 조정 */
+@media (max-width: 480px) {
+    /* 컨테이너 패딩 축소 */
+    .todo-container {
+        padding: 16px;
+        border-radius: 4px;
+    }
+
+    /* 제목 및 요약 영역 스택 배치 */
+    .todo-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    /* 모바일에서 제목 크기 축소 */
+    .todo-title {
+        font-size: 24px;
+    }
+
+    /* 입력 섹션 스택 배치: 문자 수 표시기를 입력창 아래로 */
+    .todo-input-section {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    /* 입력 필드 전체 너비 */
+    .todo-input {
+        width: 100%;
+    }
+
+    /* 추가 버튼 전체 너비 */
+    .todo-add-btn {
+        width: 100%;
+    }
+
+    /* 문자 수 표시기 위치 조정 */
+    .input-counter {
+        align-self: flex-end;
+    }
+
+    /* 할일 항목 패딩 축소 */
+    .todo-item {
+        padding: 12px;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    /* 모바일에서 액션 버튼 크기 확대: 터치 대상 최소 44px */
+    .todo-action-btn {
+        min-height: 36px;
+        padding: 8px 12px;
+    }
+
+    /* 편집 입력 필드 모바일 스타일 */
+    .edit-input {
+        min-height: 40px;
+    }
+
+    /* 빈 상태 메시지 모바일 스타일 */
+    .empty-message {
+        padding: 40px 16px;
+    }
+}
+
+/* ================================================================
+   접근성 및 추가 상태 스타일
+   ================================================================ */
+
+/* 포커스 가능한 요소의 일반적인 focus-visible 상태 */
+button:focus-visible {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
+}
+
+input:focus-visible {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
+}
+
+/* 완료 항목에 시각적 단서 제공: 취소선 + 색상 변화 */
+.todo-item-completed .todo-content {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+/* 할일 항목이 편집 모드일 때의 테두리 강조 */
+.todo-item.editing {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.1);
+}
