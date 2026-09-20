@@ -1,0 +1,51 @@
+# Git 관련 파일
+.git
+.gitignore
+.gitattributes
+
+# Node.js 관련
+node_modules
+npm-debug.log
+yarn-error.log
+.npm
+
+# 환경 파일
+.env
+.env.local
+.env.*.local
+
+# IDE 파일
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+
+# 빌드 관련
+dist
+build
+*.tgz
+
+# 테스트 관련
+coverage
+.nyc_output
+jest-coverage
+
+# 문서
+README.md
+CHANGELOG.md
+docs
+
+# CI/CD 관련 (Docker 내에서는 불필요)
+.github
+.gitlab-ci.yml
+.circleci
+docker-compose.yml
+
+# 기타
+*.log
+.cache
+.temp
+tmp
+.turbo

@@ -1,0 +1,108 @@
+# Docker Compose 설정 - 로컬 개발 및 테스트 환경
+version: '3.9'
+
+services:
+  # PostgreSQL 데이터베이스 서비스
+  postgres:
+    image: postgres:15-alpine
+    container_name: todo-db
+    environment:
+      # PostgreSQL 환경 변수
+      POSTGRES_DB: ${POSTGRES_DB:-todo_dev}
+      POSTGRES_USER: ${POSTGRES_USER:-dev_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dev_password}
+      # 시간대 설정
+      TZ: UTC
+    ports:
+      # 호스트 포트:컨테이너 포트
+      - "5432:5432"
+    volumes:
+      # 데이터 영속성을 위한 볼륨
+      - postgres_data:/var/lib/postgresql/data
+      # 초기 SQL 스크립트 (선택사항)
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      # 데이터베이스 상태 확인 명령어
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-dev_user}"]
+      # 헬스체크 간격
+      interval: 10s
+      # 타임아웃
+      timeout: 5s
+      # 재시도 횟수
+      retries: 5
+      # 시작 대기 시간
+      start_period: 10s
+    networks:
+      - todo-network
+
+  # Node.js API 서버 서비스
+  api:
+    build:
+      # Dockerfile 위치
+      context: .
+      # 대상 플랫폼
+      dockerfile: Dockerfile
+    container_name: todo-api
+    depends_on:
+      postgres:
+        # postgres 서비스가 건강한 상태가 될 때까지 대기
+        condition: service_healthy
+    environment:
+      # Node.js 환경
+      NODE_ENV: ${NODE_ENV:-development}
+      # 데이터베이스 연결 URL
+      DATABASE_URL: postgresql://${POSTGRES_USER:-dev_user}:${POSTGRES_PASSWORD:-dev_password}@postgres:5432/${POSTGRES_DB:-todo_dev}
+      # API 포트
+      PORT: ${PORT:-3000}
+    ports:
+      # 호스트 포트:컨테이너 포트
+      - "3000:3000"
+    volumes:
+      # 개발 중 소스 코드 자동 리로드를 위한 바인드 마운트
+      - .:/app
+      # node_modules는 호스트와 분리
+      - /app/node_modules
+    networks:
+      - todo-network
+    healthcheck:
+      # API 헬스체크
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    # 컨테이너 재시작 정책
+    restart: unless-stopped
+
+  # Redis 캐시 서비스 (선택사항)
+  redis:
+    image: redis:7-alpine
+    container_name: todo-cache
+    ports:
+      - "6379:6379"
+    volumes:
+      # Redis 데이터 영속성
+      - redis_data:/data
+    networks:
+      - todo-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+# 볼륨 정의 - 데이터 영속성
+volumes:
+  postgres_data:
+    # 데이터베이스 데이터 저장
+    driver: local
+  redis_data:
+    # 캐시 데이터 저장
+    driver: local
+
+# 네트워크 정의 - 서비스 간 통신
+networks:
+  todo-network:
+    # 드라이버 타입
+    driver: bridge
